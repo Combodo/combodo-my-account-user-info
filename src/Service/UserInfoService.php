@@ -8,6 +8,7 @@ namespace Combodo\iTop\MyAccount\UserInfo\Service;
 
 use DBObject;
 use MetaModel;
+use User;
 use UserRights;
 use utils;
 
@@ -41,9 +42,13 @@ class UserInfoService
 	}
 
 
-	public function ProvideHtmlUserInfo(\User $oUser, &$aParams): void
+	public function ProvideHtmlUserInfo(User $oUser, &$aParams): void
 	{
 		if (is_null($oUser)) {
+			return;
+		}
+
+		if (UserRights::IsActionAllowed(User::class, UR_ACTION_READ, \DBObjectSet::FromObject($oUser)) != UR_ALLOWED_YES) {
 			return;
 		}
 
@@ -73,7 +78,7 @@ class UserInfoService
 		$this->ConvertToHtml($aParams, $aUserInfo, 'user', $oUser);
 	}
 
-	public function ProvideHtmlContactInfo(\User $oUser, &$aParams): void
+	public function ProvideHtmlContactInfo(User $oUser, &$aParams): void
 	{
 		if (is_null($oUser)) {
 			return;
@@ -114,7 +119,7 @@ class UserInfoService
 	private function GetEditLink(DBObject $oObject): ?string
 	{
 		$sClass = get_class($oObject);
-		if (\UserRights::IsActionAllowed($sClass, UR_ACTION_MODIFY, \DBObjectSet::FromObject($oObject)) != UR_ALLOWED_YES) {
+		if (UserRights::IsActionAllowed($sClass, UR_ACTION_MODIFY, \DBObjectSet::FromObject($oObject)) != UR_ALLOWED_YES) {
 			return false;
 		}
 
