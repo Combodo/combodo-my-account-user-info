@@ -52,4 +52,9 @@ class MyAccountSectionExtension implements iMyAccountSectionExtension
 	{
 		return 0;
 	}
+
+	public function IsActive(): bool
+	{
+		return true;
+	}
 }
