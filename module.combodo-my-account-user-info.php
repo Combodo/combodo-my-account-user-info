@@ -17,7 +17,7 @@ SetupWebPage::AddModule(
 		'dependencies' => [
 			'combodo-my-account/3.2.0'
 		],
-		'mandatory' => false,
+		'mandatory' => true,
 		'visible' => true,
 
 		// Components
