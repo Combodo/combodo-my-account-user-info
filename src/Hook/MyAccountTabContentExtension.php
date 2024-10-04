@@ -6,11 +6,11 @@
 
 namespace Combodo\iTop\MyAccount\UserInfo\Hook;
 
-use Combodo\iTop\MyAccount\Hook\iMyAccountSectionExtension;
+use Combodo\iTop\MyAccount\Hook\iMyAccountTabContentExtension;
 use Combodo\iTop\MyAccount\UserInfo\Service\UserInfoService;
 use utils;
 
-class MyAccountSectionExtension implements iMyAccountSectionExtension
+class MyAccountTabContentExtension implements iMyAccountTabContentExtension
 {
 
 	/**

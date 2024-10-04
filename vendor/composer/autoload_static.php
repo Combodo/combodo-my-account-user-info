@@ -21,7 +21,7 @@ class ComposerStaticInit7ba2539d84f5c0f3efc2d5b639d62298
     );
 
     public static $classMap = array (
-        'Combodo\\iTop\\MyAccount\\UserInfo\\Hook\\MyAccountSectionExtension' => __DIR__ . '/../..' . '/src/Hook/MyAccountSectionExtension.php',
+        'Combodo\\iTop\\MyAccount\\UserInfo\\Hook\\MyAccountTabContentExtension' => __DIR__ . '/../..' . '/src/Hook/MyAccountTabContentExtension.php',
         'Combodo\\iTop\\MyAccount\\UserInfo\\Hook\\MyAccountTabExtension' => __DIR__ . '/../..' . '/src/Hook/MyAccountTabExtension.php',
         'Combodo\\iTop\\MyAccount\\UserInfo\\Service\\UserInfoService' => __DIR__ . '/../..' . '/src/Service/UserInfoService.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
