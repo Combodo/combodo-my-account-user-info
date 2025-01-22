@@ -18,7 +18,7 @@ SetupWebPage::AddModule(
 			'combodo-my-account/1.0.0'
 		],
 		'mandatory' => true,
-		'visible' => true,
+		'visible' => false,
 
 		// Components
 		//
