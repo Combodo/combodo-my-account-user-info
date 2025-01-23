@@ -5,6 +5,11 @@
   "autoload": {
     "psr-4": {
       "Combodo\\iTop\\MyAccount\\UserInfo\\": "src"
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "Combodo\\iTop\\MyAccount\\Test\\": "tests/php-unit-tests"
+      }
     }
   },
   "name": "combodo/combodo-my-account-user-info",
