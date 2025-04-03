@@ -7,7 +7,7 @@
  */
 
 Dict::Add('FR FR', 'French', 'Français', array(
-	'MyAccount:UserInfo:Tab:Title' => 'My User Information',
-	'MyAccount:SubTitle:user' => 'My user',
-	'MyAccount:SubTitle:contact' => 'My contact',
+	'MyAccount:UserInfo:Tab:Title' => 'Mes informations personnelles',
+	'MyAccount:SubTitle:user' => 'Mon utilisateur',
+	'MyAccount:SubTitle:contact' => 'Mon contact',
 ));
