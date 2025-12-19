@@ -51,7 +51,17 @@ class MyAccountUserIntegrationTest extends ItopDataTestCase  {
 
 	public function testMyAccountUserInfoMenu()
 	{
-		$sOutput = $this->CallItopUrl('/pages/exec.php?exec_module=combodo-my-account&exec_page=index.php&exec_env=production#TwigBaseTabContainer=tab_MyAccountUserInfoTabTitle', ['auth_user' => $this->oUser->Get('login'), 'auth_pwd' => $this->sPassword]);
+		$aCurlOptions = [
+			CURLOPT_POST => 1,
+		];
+
+		$aPost = [
+			'auth_user' => $this->oUser->Get('login'), 
+			'auth_pwd' => $this->sPassword
+		];
+
+		$sOutput = $this->CallItopUri('/pages/exec.php?exec_module=combodo-my-account&exec_page=index.php&exec_env=production#TwigBaseTabContainer=tab_MyAccountUserInfoTabTitle', 
+			$aPost, $aCurlOptions);
 
 		// Assert
 		$this->AssertStringContains(Dict::S('MyAccount:UserInfo:Tab:Title'), $sOutput, 'The page should display MyAccount user info tab');
@@ -63,23 +73,5 @@ class MyAccountUserIntegrationTest extends ItopDataTestCase  {
 		$this->assertNotNull($sHaystack, $sMessage);
 
 		$this->assertTrue(false !== strpos($sHaystack, $sNeedle), $sMessage . PHP_EOL . "needle: '$sNeedle' not found in content below:" . PHP_EOL . PHP_EOL . $sHaystack);
-	}
-
-	protected function CallItopUrl($sUri, ?array $aPostFields = null, $bIsPost=true)
-	{
-		$ch = curl_init();
-
-		$sUrl = MetaModel::GetConfig()->Get('app_root_url')."/$sUri";
-		curl_setopt($ch, CURLOPT_URL, $sUrl);
-		curl_setopt($ch, CURLOPT_POST, $bIsPost ? 1 : 0);// set post data to true
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $aPostFields);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		$sOutput = curl_exec($ch);
-		//echo "$sUrl error code:".curl_error($ch);
-		curl_close($ch);
-
-		return $sOutput;
 	}
 }
