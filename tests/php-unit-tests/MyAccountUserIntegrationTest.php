@@ -3,10 +3,8 @@
 namespace Combodo\iTop\MyAccount\Test\Integration;
 
 use Combodo\iTop\Test\UnitTest\ItopDataTestCase;
-use MetaModel;
-use User;
 use Dict;
-use UserRights;
+use User;
 
 /**
  *
@@ -43,25 +41,15 @@ class MyAccountUserIntegrationTest extends ItopDataTestCase  {
 		);
 	}
 
-	protected function tearDown(): void {
-		UserRights::Logoff();
-		parent::tearDown();
-		$_SESSION = [];
-	}
-
 	public function testMyAccountUserInfoMenu()
 	{
-		$aCurlOptions = [
-			CURLOPT_POST => 1,
-		];
-
 		$aPost = [
 			'auth_user' => $this->oUser->Get('login'), 
 			'auth_pwd' => $this->sPassword
 		];
 
-		$sOutput = $this->CallItopUri('/pages/exec.php?exec_module=combodo-my-account&exec_page=index.php&exec_env=production#TwigBaseTabContainer=tab_MyAccountUserInfoTabTitle', 
-			$aPost, $aCurlOptions);
+		$sOutput = $this->CallItopUri('pages/exec.php?exec_module=combodo-my-account&exec_page=index.php&exec_env=production#TwigBaseTabContainer=tab_MyAccountUserInfoTabTitle',
+			$aPost);
 
 		// Assert
 		$this->AssertStringContains(Dict::S('MyAccount:UserInfo:Tab:Title'), $sOutput, 'The page should display MyAccount user info tab');
