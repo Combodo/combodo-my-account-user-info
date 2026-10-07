@@ -54,11 +54,8 @@ class UserInfoService
 
 		$aParams['user_link'] = $this->GetEditLink($oUser);
 
-		$oProfileSet = $oUser->Get('profile_list');
-		$aProfiles = [];
-		while (($oProfile = $oProfileSet->Fetch()) != null) {
-			$aProfiles[] = $oProfile->GetAsHTML('profile');
-		}
+		$aProfiles = UserRights::ListProfiles($oUser);
+
 		$sProfileListHtml = implode('<BR>', $aProfiles);
 
 		$oAllowedOrgList = $oUser->Get('allowed_org_list');
