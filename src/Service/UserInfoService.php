@@ -54,7 +54,7 @@ class UserInfoService
 
 		$aParams['user_link'] = $this->GetEditLink($oUser);
 
-		$aProfiles = UserRights::ListProfiles($oUser);
+		$aProfiles = array_map(static fn ($sProfile) => utils::HtmlEntities($sProfile), UserRights::ListProfiles($oUser));
 
 		$sProfileListHtml = implode('<BR>', $aProfiles);
 
